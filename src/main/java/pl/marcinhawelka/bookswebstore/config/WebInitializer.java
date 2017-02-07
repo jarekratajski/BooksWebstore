@@ -6,8 +6,11 @@
 package pl.marcinhawelka.bookswebstore.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -17,7 +20,18 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 @Configuration
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+  
 
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        this.registerRequestContextListener(servletContext);
+    }
+
+    private void registerRequestContextListener(ServletContext servletContext) {
+        servletContext.addListener(new RequestContextListener());
+    }
+    
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class ,SecurityConfig.class};

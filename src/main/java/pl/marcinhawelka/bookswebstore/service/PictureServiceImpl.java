@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
+import pl.marcinhawelka.bookswebstore.service.interfaces.PictureService;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,32 +31,34 @@ public class PictureServiceImpl implements PictureService {
     @Autowired
     private PictureDAO pictureDAO;
 
+    @Autowired
+    private Environment env;
+
     @Override
     public Picture addPicture(MultipartFile uploadFile) {
-       if (!uploadFile.isEmpty()) {
+        if (!uploadFile.isEmpty()) {
             try {
                 UUID uuid = UUID.randomUUID();
-                String filename = "D://zdjecia/upload_" + uuid.toString();
+                String filename = env.getRequiredProperty("picture.driver_location") + uuid.toString();
                 byte[] bytes = uploadFile.getBytes();
                 File fsFile = new File(filename);
                 fsFile.createNewFile();
                 try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(fsFile))) {
                     stream.write(bytes);
-                }    
+                }
                 Picture picture = new Picture();
                 picture.setOriginalName(uploadFile.getOriginalFilename());
                 picture.setUuidName(uuid.toString());
                 picture.setFileType(uploadFile.getContentType());
-                picture.setFileSize((int)uploadFile.getSize());
+                picture.setFileSize((int) uploadFile.getSize());
                 pictureDAO.save(picture);
                 return pictureDAO.findByUuidName(uuid.toString());
             } catch (IOException e) {
-                System.out.println("File has not been uploaded" + e);
+                e.printStackTrace(System.out);
             }
-        } else {
-           System.out.println("Uploaded file is empty");
         }
-       return null;
+        System.out.println("Uploaded file is empty");
+        return null;
     }
 
     @Override
@@ -62,27 +66,26 @@ public class PictureServiceImpl implements PictureService {
         if (!uploadFile.isEmpty()) {
             try {
                 UUID uuid = UUID.randomUUID();
-                String filename = "D://zdjecia/upload_" + uuid.toString();
+                String filename = env.getRequiredProperty("picture.driver_location") + uuid.toString();
                 byte[] bytes = uploadFile.getBytes();
                 File fsFile = new File(filename);
                 fsFile.createNewFile();
                 try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(fsFile))) {
                     stream.write(bytes);
-                }    
+                }
                 Picture p = pictureDAO.findOne(picture.getId());
                 p.setOriginalName(uploadFile.getOriginalFilename());
                 p.setUuidName(uuid.toString());
                 p.setFileType(uploadFile.getContentType());
-                p.setFileSize((int)uploadFile.getSize());
+                p.setFileSize((int) uploadFile.getSize());
                 pictureDAO.save(picture);
                 return pictureDAO.findByUuidName(uuid.toString());
             } catch (IOException e) {
-                System.out.println("File has not been uploaded" + e);
+                e.printStackTrace(System.out);
             }
-        } else {
-           System.out.println("Uploaded file is empty");
         }
-       return null;
+        System.out.println("Uploaded file is empty");
+        return null;
     }
 
     @Override
@@ -96,9 +99,10 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public Picture findByUuidName(String uuidName){
+    public Picture findByUuidName(String uuidName) {
         return pictureDAO.findByUuidName(uuidName);
     }
+
     @Override
     public List<Picture> findAll() {
         return (List<Picture>) pictureDAO.findAll();

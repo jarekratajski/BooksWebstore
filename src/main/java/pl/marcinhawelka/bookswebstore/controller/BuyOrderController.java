@@ -5,7 +5,8 @@
  */
 package pl.marcinhawelka.bookswebstore.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.marcinhawelka.bookswebstore.entity.Book;
 import pl.marcinhawelka.bookswebstore.entity.User;
 import pl.marcinhawelka.bookswebstore.model.BuyModel;
-import pl.marcinhawelka.bookswebstore.service.BookService;
-import pl.marcinhawelka.bookswebstore.service.BuyOrderService;
-import pl.marcinhawelka.bookswebstore.service.SessionOrderService;
-import pl.marcinhawelka.bookswebstore.service.UserService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.BuyOrderService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.SessionOrderService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.UserService;
 
 /**
  *
@@ -53,63 +54,71 @@ public class BuyOrderController {
     }
 
     @GetMapping("add")
-    public String addBookToBuyModel(Model model, HttpServletRequest request, @RequestParam Long id) {
-       
+    public String addBookToBuyModel(Model model, @RequestParam Long id) {
+
         Book book = bookService.findOne(id);
-        BuyModel buyModel = sessionOrderService.getBuyModelInSession(request);
+        BuyModel buyModel = sessionOrderService.getBuyModelInSession();
         buyOrderService.addBookToOrder(book, buyModel);
         model.addAttribute("buyModel", buyModel);
         return "redirect:cart";
     }
 
     @GetMapping("/delete")
-    public String removeBookFromBuyModel(Model model, HttpServletRequest reuest, @RequestParam Long id) {
+    public String removeBookFromBuyModel(Model model, @RequestParam Long id) {
 
         Book book = bookService.findOne(id);
-        BuyModel buyModel = sessionOrderService.getBuyModelInSession(reuest);
+        BuyModel buyModel = sessionOrderService.getBuyModelInSession();
         buyOrderService.removeBookFromOrder(book, buyModel);
         model.addAttribute("buyModel", buyModel);
         return "redirect:cart";
     }
 
     @GetMapping("cart")
-    public String getCart(Model model, HttpServletRequest request) {
+    public String getCart(Model model) {
 
-        model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession(request));
+        model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession());
         return "order/buy/cart";
     }
 
     @PostMapping("cart")
-    public String updateBuyModelAmount(Model model, HttpServletRequest request, @RequestParam("quantity") String[] amount) {  
-            model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession(request));
-            String message = buyOrderService.updateAmountInOrder(amount, sessionOrderService.getBuyModelInSession(request));
-            model.addAttribute("message",message);
-            return "order/buy/cart";
+    public String updateBuyModelAmount(Model model, @RequestParam("quantity") String[] stringAmounts) {
+        model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession());
+        List<Integer> amounts = new ArrayList<>();
+        for (String stringAmount : stringAmounts) {
+            amounts.add(Integer.parseInt(stringAmount));
+        }
+        try {
+            buyOrderService.updateAmountInOrder(amounts, sessionOrderService.getBuyModelInSession());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace(System.out);
+            model.addAttribute("message", "Brak wymaganej liczby ksiązek na magazynie");
+        }
+        return "order/buy/cart";
     }
-    
+
     @GetMapping("{username}/confirm")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #username")
-    public String confirmBuyOrder(Model model, HttpServletRequest request, @PathVariable String username) {
+    public String confirmBuyOrder(Model model, @PathVariable String username) {
 
         model.addAttribute("user", userService.findByUsername(username));
-        model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession(request));
+        model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession());
         return "order/buy/confirm";
     }
 
     @PostMapping("{username}/confirm")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #username")
-    public String saveBuyOrder(Model model, HttpServletRequest request, @PathVariable String username) {
+    public String saveBuyOrder(Model model, @PathVariable String username) {
         User user = userService.findByUsername(username);
-        BuyModel buyModel = sessionOrderService.getBuyModelInSession(request);
-        buyOrderService.saveOrder(user, buyModel); 
-        sessionOrderService.removeBuyModelInSession(request);
+        BuyModel buyModel = sessionOrderService.getBuyModelInSession();
+        buyOrderService.saveOrder(user, buyModel);
+        sessionOrderService.removeBuyModelInSession();
         return "order/buy/thanks";
     }
 
     @RequestMapping("/cancel")
-    public String cancelBuyOrder(HttpServletRequest request) {
+    public String cancelBuyOrder() {
 
-        sessionOrderService.removeBuyModelInSession(request);
+        sessionOrderService.removeBuyModelInSession();
         return "order/cancel";
     }
 }

@@ -21,7 +21,7 @@ public class BuyProduct {
     private BigDecimal bookTotalCost;
     
     public BuyProduct(){
-        this.bookTotalCost = new BigDecimal(0);
+        this.bookTotalCost = BigDecimal.ZERO;
     }
 
     public Book getBook() {

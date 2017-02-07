@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
+import pl.marcinhawelka.bookswebstore.service.interfaces.PublisherService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,12 +46,17 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public void deletePublisher(Long id) {
+        Publisher publisher = null;
         try {
-            publisherDAO.delete(id);
+           publisher = publisherDAO.findOne(id);
         } catch (IllegalArgumentException e) {
             System.out.println("Can't delete publisher with id:" + id);
-
+            e.printStackTrace(System.out);
         }
+        if(publisher == null){
+            throw new IllegalArgumentException(String.format("Can't delete publisher with id:%d", id));
+        }
+        publisherDAO.delete(id);
     }
 
     @Override

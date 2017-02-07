@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.service;
+package pl.marcinhawelka.bookswebstore.service.interfaces;
 
 import java.util.List;
 import pl.marcinhawelka.bookswebstore.dto.BookDTO;

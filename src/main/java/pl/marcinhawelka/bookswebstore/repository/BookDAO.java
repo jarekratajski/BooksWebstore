@@ -20,10 +20,10 @@ import pl.marcinhawelka.bookswebstore.entity.Type;
 @Repository
 public interface BookDAO extends CrudRepository<Book, Long> {
 
-    public List<Book> findByType(Type type);
+    List<Book> findByType(Type type);
 
-    public List<Book> findByPublisher(Publisher publisher);
+    List<Book> findByPublisher(Publisher publisher);
 
     @Query("select b from Book b order by RANDOM() ")
-    public List<Book> findRandamBook();
+    List<Book> findRandomBook();
 }

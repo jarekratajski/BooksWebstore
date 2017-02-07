@@ -7,7 +7,7 @@ package pl.marcinhawelka.bookswebstore.annotation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import pl.marcinhawelka.bookswebstore.dto.UserChangePasswordDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserChangePasswordDTO;
 
 /**
  *

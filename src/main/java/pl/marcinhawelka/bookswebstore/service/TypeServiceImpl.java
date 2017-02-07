@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
+import pl.marcinhawelka.bookswebstore.service.interfaces.TypeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

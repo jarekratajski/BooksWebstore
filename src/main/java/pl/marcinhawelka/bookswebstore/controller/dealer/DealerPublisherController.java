@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.controller;
+package pl.marcinhawelka.bookswebstore.controller.dealer;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.marcinhawelka.bookswebstore.dto.PublisherDTO;
 import pl.marcinhawelka.bookswebstore.entity.Picture;
 import pl.marcinhawelka.bookswebstore.entity.Publisher;
-import pl.marcinhawelka.bookswebstore.service.PictureService;
-import pl.marcinhawelka.bookswebstore.service.PublisherService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.PictureService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.PublisherService;
 
 /**
  *
@@ -80,7 +80,11 @@ public class DealerPublisherController {
 
     @GetMapping("/delete/{id}")
     public String deletePublisher(@PathVariable Long id) {
+        try{
         publisherService.deletePublisher(id);
+        }catch(IllegalArgumentException e){
+            e.printStackTrace(System.out);
+        }
         return "redirect:/publisher/list";
     }
 }

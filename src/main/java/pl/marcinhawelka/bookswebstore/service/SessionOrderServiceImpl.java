@@ -5,7 +5,8 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
-import javax.servlet.http.HttpServletRequest;
+import pl.marcinhawelka.bookswebstore.service.interfaces.SessionOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.marcinhawelka.bookswebstore.model.BuyModel;
 
@@ -16,19 +17,17 @@ import pl.marcinhawelka.bookswebstore.model.BuyModel;
 @Service("SessionOrderService")
 public class SessionOrderServiceImpl implements SessionOrderService {
 
+    @Autowired
+    private BuyModel buyModel;
+    
     @Override
-    public BuyModel getBuyModelInSession(HttpServletRequest request) {
-        BuyModel buyModel = (BuyModel) request.getSession().getAttribute("buyModel");
-        if (buyModel == null) {
-            buyModel = new BuyModel();
-            request.getSession().setAttribute("buyModel", buyModel);
-        }
+    public BuyModel getBuyModelInSession() {
         return buyModel;
     }
 
     @Override
-    public void removeBuyModelInSession(HttpServletRequest request) {
-        request.getSession().removeAttribute("buyModel");
+    public void removeBuyModelInSession() {   
+        buyModel.clearProductsList();
     }
 
 }

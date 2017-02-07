@@ -44,6 +44,10 @@
                                 <td></td>
                                 <td><form:errors path="username" /></td>
                             </tr>
+                             <tr>
+                                <td></td>
+                                <td>${errorUsername}</td>
+                            </tr>
                         </c:if>
                         <tr>
                             <td><label for="password">Haslo</label></td>
@@ -80,7 +84,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>${error}</td>
+                                <td>${errorEmail}</td>
                             </tr>
                         </c:if>
                         <tr>

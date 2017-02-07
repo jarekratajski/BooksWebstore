@@ -8,18 +8,18 @@ package pl.marcinhawelka.bookswebstore.model;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 import pl.marcinhawelka.bookswebstore.entity.Book;
-import pl.marcinhawelka.bookswebstore.service.BookService;
 
 /**
  *
  * @author Matuidi
  */
+@Component
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class BuyModel {
-
-    @Autowired
-    private BookService bookService;
 
     private List<BuyProduct> products;
 
@@ -47,16 +47,16 @@ public class BuyModel {
     }
 
     public void addProductToModel(BuyProduct product, Integer booksQuantity) {
-        boolean isContains = false;
+        boolean isProductContainsBuyModelProducts = false;
         for (BuyProduct bp : products) {
             if (bp.getBook().getTitle().equals(product.getBook().getTitle())) {
                 if (product.getBook().getQuantity() >= bp.getQuantity() + 1) {
                     bp.setQuantity(bp.getQuantity() + 1);
                 }
-                isContains = true;
+                isProductContainsBuyModelProducts = true;
             }
         }
-        if (!isContains) {
+        if (!isProductContainsBuyModelProducts) {
             if (booksQuantity < product.getQuantity()) {
                 product.setQuantity(0);
             }
@@ -81,14 +81,20 @@ public class BuyModel {
         }
     }
 
-    public void updateQuantity(String[] amount) {
+    public void updateQuantity(List<Integer> amounts) {
         int i = 0;
         for (BuyProduct product : products) {
-            product.setQuantity(Integer.parseInt(amount[i++]));
+            product.setQuantity(amounts.get(i));
+            i++;
             if (product.getQuantity() == 0) {
                 products.remove(product);
             }
         }
+        updateTotalCost();
+    }
+    
+    public void clearProductsList(){
+        products.clear();
         updateTotalCost();
     }
 

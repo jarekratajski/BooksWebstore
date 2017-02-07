@@ -5,13 +5,14 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
+import pl.marcinhawelka.bookswebstore.service.interfaces.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.marcinhawelka.bookswebstore.dto.UserChangePasswordDTO;
-import pl.marcinhawelka.bookswebstore.dto.UserEditDTO;
-import pl.marcinhawelka.bookswebstore.dto.UserNewDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserChangePasswordDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserEditDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserNewDTO;
 import pl.marcinhawelka.bookswebstore.entity.User;
 import pl.marcinhawelka.bookswebstore.repository.UserDAO;
 
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public void addUser(UserNewDTO userNewDTO) throws Exception {
 
         if (emailExist(userNewDTO.getEmail())) {
-            throw new Exception(
+            throw new IllegalArgumentException(
                     "There is an account with that email adress: "
                     + userNewDTO.getEmail());
         }

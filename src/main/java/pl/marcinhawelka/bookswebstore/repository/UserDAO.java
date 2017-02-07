@@ -14,9 +14,9 @@ import pl.marcinhawelka.bookswebstore.entity.User;
  * @author Matuidi
  */
 @Repository
-public interface UserDAO extends CrudRepository<User, Long>{
-    
-    public User findByUsername(String username);
-    
-    public User findByEmail(String email);
+public interface UserDAO extends CrudRepository<User, Long> {
+
+    User findByUsername(String username);
+
+    User findByEmail(String email);
 }

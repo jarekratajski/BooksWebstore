@@ -16,9 +16,9 @@ import pl.marcinhawelka.bookswebstore.entity.BuyOrder;
  * @author Matuidi
  */
 @Repository
-public interface BuyOrderDAO extends CrudRepository<BuyOrder, Long>{
-    
+public interface BuyOrderDAO extends CrudRepository<BuyOrder, Long> {
+
     @Query("select b from BuyOrder b where user_id=?1")
-    public List findAllUserOrders(Long userId);
-    
+    List findAllUserOrders(Long userId);
+
 }

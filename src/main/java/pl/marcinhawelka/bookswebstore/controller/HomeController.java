@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.marcinhawelka.bookswebstore.entity.Book;
-import pl.marcinhawelka.bookswebstore.service.BookService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
 
 /**
  *

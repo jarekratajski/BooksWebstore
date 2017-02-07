@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
+import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,9 +58,7 @@ public class BookServiceImpl implements BookService {
     }
     
     @Override
-    public void updateQuantity(Book book){
-        bookDAO.save(book);
-    }
+    public void updateQuantity(Book book){}
 
     @Override
     public void deleteBook(Long id) {
@@ -88,7 +87,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findBooksForBooksBar() {
-        return bookDAO.findRandamBook();
+        return bookDAO.findRandomBook();
     }
 
 }

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.service;
+package pl.marcinhawelka.bookswebstore.service.interfaces;
 
 import java.util.List;
-import pl.marcinhawelka.bookswebstore.dto.UserChangePasswordDTO;
-import pl.marcinhawelka.bookswebstore.dto.UserEditDTO;
-import pl.marcinhawelka.bookswebstore.dto.UserNewDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserChangePasswordDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserEditDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserNewDTO;
 import pl.marcinhawelka.bookswebstore.entity.User;
 
 /**

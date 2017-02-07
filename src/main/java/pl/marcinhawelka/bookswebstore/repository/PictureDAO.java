@@ -14,7 +14,7 @@ import pl.marcinhawelka.bookswebstore.entity.Picture;
  * @author Matuidi
  */
 @Repository
-public interface PictureDAO extends CrudRepository<Picture, Long>{
-    
-    public Picture findByUuidName(String uuidName);
+public interface PictureDAO extends CrudRepository<Picture, Long> {
+
+    Picture findByUuidName(String uuidName);
 }

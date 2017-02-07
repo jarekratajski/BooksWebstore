@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.controller;
+package pl.marcinhawelka.bookswebstore.controller.dealer;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.marcinhawelka.bookswebstore.dto.TypeDTO;
 import pl.marcinhawelka.bookswebstore.entity.Type;
-import pl.marcinhawelka.bookswebstore.service.TypeService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.TypeService;
 
 /**
  *

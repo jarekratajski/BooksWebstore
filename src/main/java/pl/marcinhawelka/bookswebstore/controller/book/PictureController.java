@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.controller;
+package pl.marcinhawelka.bookswebstore.controller.book;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.marcinhawelka.bookswebstore.entity.Picture;
-import pl.marcinhawelka.bookswebstore.service.PictureService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.PictureService;
 
 /**
  *

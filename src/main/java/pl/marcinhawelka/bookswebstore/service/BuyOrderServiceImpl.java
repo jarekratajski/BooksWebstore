@@ -5,6 +5,9 @@
  */
 package pl.marcinhawelka.bookswebstore.service;
 
+import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.UserService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.BuyOrderService;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,21 +89,20 @@ public class BuyOrderServiceImpl implements BuyOrderService {
     }
 
     @Override
-    public String updateAmountInOrder(String[] amount, BuyModel buyModel) {
+    public void updateAmountInOrder(List<Integer> amount, BuyModel buyModel) {
          Book book;
          int i = 0;
         for (BuyProduct product : buyModel.getProducts()) {
             book = bookService.findOne(product.getBook().getId());
             
-            if(book.getQuantity() - Integer.parseInt(amount[i])<0){
+            if(book.getQuantity() - amount.get(i)<0){
                 product.setQuantity(book.getQuantity());
                 buyModel.updateTotalCost();
-                return "Maksymalna liczba ksiazki " + product.getBook().getTitle() + " wynosi:" + product.getBook().getQuantity();
+                throw new IllegalArgumentException(String.format("Maksymalna liczba ksiazki %s wynosi: %d",product.getBook().getTitle(),product.getBook().getQuantity()));
             }
             i++;
         }
         buyModel.updateQuantity(amount);
-        return "";
     }
 
     @Override

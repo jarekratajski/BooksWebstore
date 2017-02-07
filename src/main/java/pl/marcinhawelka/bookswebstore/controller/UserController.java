@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.marcinhawelka.bookswebstore.dto.UserChangePasswordDTO;
-import pl.marcinhawelka.bookswebstore.dto.UserNewDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserChangePasswordDTO;
+import pl.marcinhawelka.bookswebstore.dto.user.UserNewDTO;
 import pl.marcinhawelka.bookswebstore.entity.User;
-import pl.marcinhawelka.bookswebstore.service.UserService;
+import pl.marcinhawelka.bookswebstore.service.interfaces.UserService;
 
 /**
  *
@@ -52,11 +52,13 @@ public class UserController {
         }
         try {
             userService.addUser(userNewDTO);
-        } catch (Exception e) {
-            System.out.println(e);
-            model.addAttribute("error", e);
+        } catch(IllegalArgumentException e){
+            model.addAttribute("errorEmail", "Podany adress email jest juz zajety");
             return "user/add";
-        }
+        }catch (Exception e) {
+            model.addAttribute("errorUsername", "Podany nick jest juz zajety");
+            return "user/add";
+        } 
         return "redirect:/home";
     }
 

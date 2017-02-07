@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.service;
+package pl.marcinhawelka.bookswebstore.service.interfaces;
 
-import javax.servlet.http.HttpServletRequest;
 import pl.marcinhawelka.bookswebstore.model.BuyModel;
 
 /**
@@ -14,8 +13,8 @@ import pl.marcinhawelka.bookswebstore.model.BuyModel;
  */
 public interface SessionOrderService {
     
-     BuyModel getBuyModelInSession(HttpServletRequest request);
+     BuyModel getBuyModelInSession();
      
-     void removeBuyModelInSession(HttpServletRequest request);
+     void removeBuyModelInSession();
        
 }

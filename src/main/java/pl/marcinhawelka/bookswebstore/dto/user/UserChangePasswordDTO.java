@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.marcinhawelka.bookswebstore.dto;
+package pl.marcinhawelka.bookswebstore.dto.user;
 
 import org.hibernate.validator.constraints.NotBlank;
 import pl.marcinhawelka.bookswebstore.annotation.PasswordMatchesChangePassord;
