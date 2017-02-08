@@ -6,9 +6,6 @@
 package pl.marcinhawelka.bookswebstore.service.interfaces;
 
 import java.util.List;
-import pl.marcinhawelka.bookswebstore.dto.user.UserChangePasswordDTO;
-import pl.marcinhawelka.bookswebstore.dto.user.UserEditDTO;
-import pl.marcinhawelka.bookswebstore.dto.user.UserNewDTO;
 import pl.marcinhawelka.bookswebstore.entity.User;
 
 /**
@@ -17,13 +14,9 @@ import pl.marcinhawelka.bookswebstore.entity.User;
  */
 public interface UserService {
       
-    void addUser(UserNewDTO userNewDTO) throws Exception;
+    void addUser(User user) throws Exception;
 
-    void changeUserPassword(UserChangePasswordDTO userChangePasswordDTO, String username);
-    
     void updateUser(User user);
-    
-    void updateUserDTO(UserEditDTO userEditDTO, Long id);
 
     void deleteUser(Long id);
 

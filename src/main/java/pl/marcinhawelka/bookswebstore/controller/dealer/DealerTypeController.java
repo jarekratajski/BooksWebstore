@@ -47,14 +47,14 @@ public class DealerTypeController {
         return "redirect:/type/list";
     }
 
-    @GetMapping("edit/{id}")
-    public String getEditTypePage(Model model, @PathVariable Long id) {
-        model.addAttribute("type", typeService.findOne(id));
+    @GetMapping("edit/{type}")
+    public String getEditTypePage(Model model,Type type) {
+        model.addAttribute("type", type);
         return "type/add";
     }
 
-    @PostMapping("edit/{id}")
-    public String editType(@Valid @ModelAttribute("type") TypeDTO typeDTO, @PathVariable Long id, BindingResult result) {
+    @PostMapping("edit/{type}")
+    public String editType(@Valid @ModelAttribute("type") TypeDTO typeDTO, BindingResult result) {
 
         if (result.hasErrors()) {
             return "type/add";

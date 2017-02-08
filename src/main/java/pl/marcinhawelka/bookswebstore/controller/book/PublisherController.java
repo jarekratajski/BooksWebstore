@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.marcinhawelka.bookswebstore.entity.Publisher;
 import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
 import pl.marcinhawelka.bookswebstore.service.interfaces.PublisherService;
 
@@ -35,10 +35,10 @@ public class PublisherController {
 		return "publisher/list";
 	}
 
-	@RequestMapping("{id}")
-	public String getPublishersByType(Model model, @PathVariable Long id) {
-		model.addAttribute("publisher", publisherService.findOne(id));
-                model.addAttribute("books", bookService.findAllByPublisher(publisherService.findOne(id)));
+	@RequestMapping("{publisher}")
+	public String getPublishersByType(Model model, Publisher publisher) {
+		model.addAttribute("publisher", publisher);
+                model.addAttribute("books", bookService.findAllByPublisher(publisher));
 		return "publisher/details";
 	}
 }

@@ -6,8 +6,12 @@
 package pl.marcinhawelka.bookswebstore.controller;
 
 import javax.validation.Valid;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,11 +35,16 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @GetMapping("{username}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #username")
-    public String getUserDetails(Model model, @PathVariable("username") String username) {
-        model.addAttribute("user", userService.findByUsername(username));
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+         
+    private final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().mapNulls(false).build();
+    
+    @GetMapping("{user}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #user.username")
+    public String getUserDetails(Model model,User user) {
+        model.addAttribute("user",user);
         return "user/details";
     }
 
@@ -50,8 +59,15 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/add";
         }
+       
+        mapperFactory.classMap(User.class, UserNewDTO.class);
+        MapperFacade mapper  = mapperFactory.getMapperFacade();
+        User user = mapper.map(userNewDTO, User.class);
+        user.setPassword(passwordEncoder.encode(userNewDTO.getPassword()));
+        user.setRole("ROLE_USER");
+        user.setEnabled(true);
         try {
-            userService.addUser(userNewDTO);
+            userService.addUser(user);
         } catch(IllegalArgumentException e){
             model.addAttribute("errorEmail", "Podany adress email jest juz zajety");
             return "user/add";
@@ -62,27 +78,27 @@ public class UserController {
         return "redirect:/home";
     }
 
-    @GetMapping("change/password/{username}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #username")
-    public String getEditUserPage(Model model, @PathVariable String username) {
+    @GetMapping("change/password/{user}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #user.username")
+    public String getChangePasswordPage(Model model, User user) {
         model.addAttribute("password", new UserChangePasswordDTO());
         return "user/changePassword";
     }
 
-    @PostMapping("change/password/{username}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #username")
-    public String changePassword(@Valid @ModelAttribute("password") UserChangePasswordDTO userChangePasswordDTO, BindingResult result, @PathVariable String username) {
+    @PostMapping("change/password/{user}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #user.username")
+    public String handleChangePasswordPage(@Valid @ModelAttribute("password") UserChangePasswordDTO userChangePasswordDTO, BindingResult result,User user) {
         if (result.hasErrors()) {
             return "user/changePassword";
         }
-        userService.changeUserPassword(userChangePasswordDTO, username);
+        user.setPassword(passwordEncoder.encode(userChangePasswordDTO.getPassword()));
+        userService.updateUser(user);
         return "user/changePasswordSucces";
     }
     
-    @GetMapping("/delete/{username}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #username")
-    public String deleteType(@PathVariable String username) {
-        User user = userService.findByUsername(username);
+    @GetMapping("/delete/{user}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || principal.username == #user.username")
+    public String deleteUser(User user) {
         userService.deleteUser(user.getId());
         return "redirect:users/list";
     }

@@ -44,11 +44,9 @@ public class BuyOrderController {
     @Autowired
     private SessionOrderService sessionOrderService;
 
-    @GetMapping("/{username}/list")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #username")
-    public String listUserBuyOrders(Model model, @PathVariable("username") String username) {
-
-        User user = userService.findByUsername(username);
+    @GetMapping("/{user}/list")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #user.username")
+    public String listUserBuyOrders(Model model, User user) {
         model.addAttribute("orders", buyOrderService.getUserOrders(user));
         return "order/buy/list";
     }
@@ -96,11 +94,11 @@ public class BuyOrderController {
         return "order/buy/cart";
     }
 
-    @GetMapping("{username}/confirm")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #username")
-    public String confirmBuyOrder(Model model, @PathVariable String username) {
+    @GetMapping("{user}/confirm")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #user.username")
+    public String confirmBuyOrder(Model model, User user) {
 
-        model.addAttribute("user", userService.findByUsername(username));
+        model.addAttribute("user", user);
         model.addAttribute("buyModel", sessionOrderService.getBuyModelInSession());
         return "order/buy/confirm";
     }

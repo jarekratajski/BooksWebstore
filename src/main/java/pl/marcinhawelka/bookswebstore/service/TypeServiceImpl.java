@@ -50,7 +50,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public List<Type> findAll() {
-        return (List<Type>) typeDAO.findAll();
+        return typeDAO.findAll();
     }
 
 }

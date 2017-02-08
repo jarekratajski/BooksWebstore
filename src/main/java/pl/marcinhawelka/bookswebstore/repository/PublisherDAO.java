@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.repository;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.marcinhawelka.bookswebstore.entity.Publisher;
@@ -16,4 +17,6 @@ import pl.marcinhawelka.bookswebstore.entity.Publisher;
 @Repository
 public interface PublisherDAO extends CrudRepository<Publisher, Long>{
     
+    @Override
+    List<Publisher> findAll();
 }

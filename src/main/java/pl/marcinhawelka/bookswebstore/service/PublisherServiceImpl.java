@@ -45,18 +45,8 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
-    public void deletePublisher(Long id) {
-        Publisher publisher = null;
-        try {
-           publisher = publisherDAO.findOne(id);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Can't delete publisher with id:" + id);
-            e.printStackTrace(System.out);
-        }
-        if(publisher == null){
-            throw new IllegalArgumentException(String.format("Can't delete publisher with id:%d", id));
-        }
-        publisherDAO.delete(id);
+    public void delete(Publisher publisher) {
+        publisherDAO.delete(publisher);
     }
 
     @Override
@@ -66,7 +56,7 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public List<Publisher> findAll() {
-        return (List<Publisher>) publisherDAO.findAll();
+        return publisherDAO.findAll();
     }
 
 }

@@ -27,7 +27,7 @@ public class BuyModel {
 
     public BuyModel() {
         products = new LinkedList<>();
-        buyTotalCost = new BigDecimal(0);
+        buyTotalCost = BigDecimal.ZERO;
     }
 
     public List<BuyProduct> getProducts() {

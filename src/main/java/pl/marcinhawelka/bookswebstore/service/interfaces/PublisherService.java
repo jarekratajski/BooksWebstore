@@ -20,7 +20,7 @@ public interface PublisherService {
             
     void updatePublisher(PublisherDTO publisherDTO, Picture picture);
     
-    void deletePublisher(Long id);
+    void delete(Publisher publisher);
     
     Publisher findOne(Long id);
     

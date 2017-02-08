@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.repository;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.marcinhawelka.bookswebstore.entity.User;
@@ -19,4 +20,7 @@ public interface UserDAO extends CrudRepository<User, Long> {
     User findByUsername(String username);
 
     User findByEmail(String email);
+    
+    @Override
+    List<User> findAll();
 }

@@ -58,14 +58,14 @@ public class DealerPublisherController {
         return "redirect:/publisher/list";
     }
 
-    @GetMapping("edit/{id}")
-    public String getEditPublisherPage(Model model, @PathVariable Long id) {
-        model.addAttribute("publisher", publisherService.findOne(id));
+    @GetMapping("edit/{publisher}")
+    public String getEditPublisherPage(Model model,  Publisher publisher) {
+        model.addAttribute("publisher", publisher);
         return "publisher/add";
     }
 
-    @PostMapping("edit/{id}")
-    public String editPublisher(@RequestParam("uploadFile") MultipartFile uploadFile, @Valid @ModelAttribute("publisher") PublisherDTO publisherDTO, @PathVariable Long id, BindingResult result) {
+    @PostMapping("edit/{publisher}")
+    public String editPublisher(@RequestParam("uploadFile") MultipartFile uploadFile, @Valid @ModelAttribute("publisher") PublisherDTO publisherDTO, BindingResult result) {
 
         if (result.hasErrors()) {
             return "publisher/add";
@@ -78,10 +78,10 @@ public class DealerPublisherController {
         return "redirect:/publisher/list";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deletePublisher(@PathVariable Long id) {
+    @GetMapping("/delete/{publisher}")
+    public String deletePublisher(Publisher publisher) {
         try{
-        publisherService.deletePublisher(id);
+        publisherService.delete(publisher);
         }catch(IllegalArgumentException e){
             e.printStackTrace(System.out);
         }

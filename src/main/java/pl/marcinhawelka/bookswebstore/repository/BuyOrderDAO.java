@@ -20,5 +20,7 @@ public interface BuyOrderDAO extends CrudRepository<BuyOrder, Long> {
 
     @Query("select b from BuyOrder b where user_id=?1")
     List findAllUserOrders(Long userId);
-
+    
+    @Override
+    List<BuyOrder> findAll();
 }

@@ -26,7 +26,7 @@ public class HomeController {
         @GetMapping("/home")
         public String welcome(Model model){
             
-            List<Book> books = bookService.findBooksForBooksBar();
+            List<Book> books = bookService.findForBooksBar();
             model.addAttribute("books", books);
             return "home";
         }

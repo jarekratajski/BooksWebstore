@@ -5,6 +5,7 @@
  */
 package pl.marcinhawelka.bookswebstore.repository;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.marcinhawelka.bookswebstore.entity.Picture;
@@ -17,4 +18,7 @@ import pl.marcinhawelka.bookswebstore.entity.Picture;
 public interface PictureDAO extends CrudRepository<Picture, Long> {
 
     Picture findByUuidName(String uuidName);
+    
+    @Override
+    List<Picture> findAll();
 }

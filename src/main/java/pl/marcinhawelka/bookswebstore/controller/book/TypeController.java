@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.marcinhawelka.bookswebstore.entity.Type;
 import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
 import pl.marcinhawelka.bookswebstore.service.interfaces.TypeService;
 
@@ -34,10 +34,10 @@ public class TypeController {
         return "type/list";
     }
 
-    @GetMapping("{id}")
-    public String getTypeById(Model model, @PathVariable Long id) {
-        model.addAttribute("type", typeService.findOne(id));
-        model.addAttribute("books",bookService.findByType(typeService.findOne(id)));
+    @GetMapping("{type}")
+    public String getTypeById(Model model, Type type) {
+        model.addAttribute("type", type);
+        model.addAttribute("books",bookService.findByType(type));
         return "type/details";
     }
 }

@@ -66,7 +66,7 @@ public class BuyOrderServiceImpl implements BuyOrderService {
 
     @Override
     public List<BuyOrder> findAll() {
-        return (List<BuyOrder>) buyOrderDAO.findAll();
+        return buyOrderDAO.findAll();
     }
 
     @Override

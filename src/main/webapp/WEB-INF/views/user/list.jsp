@@ -49,7 +49,7 @@
                                         <td style="width: 480px;">
                                             <ul>
                                                 <li><a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/admin/edit/${user.username}">Edytuj</a>
-                                                <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/user/delete/${user.username}">Skasuj</a>
+                                                <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/user/${user.username}">Skasuj</a>
                                                  <a  class="a_buttonSmall" href="${pageContext.request.contextPath}/user/change/password/${user.username}">Zmien haslo</a></li>
                                             </ul>
                                         </td>

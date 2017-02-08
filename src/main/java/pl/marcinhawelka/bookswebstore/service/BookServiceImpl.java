@@ -9,9 +9,7 @@ import pl.marcinhawelka.bookswebstore.service.interfaces.BookService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.marcinhawelka.bookswebstore.dto.BookDTO;
 import pl.marcinhawelka.bookswebstore.entity.Book;
-import pl.marcinhawelka.bookswebstore.entity.Picture;
 import pl.marcinhawelka.bookswebstore.repository.BookDAO;
 import pl.marcinhawelka.bookswebstore.entity.Publisher;
 import pl.marcinhawelka.bookswebstore.entity.Type;
@@ -26,42 +24,22 @@ public class BookServiceImpl implements BookService {
     private BookDAO bookDAO;
 
     @Override
-    public void addBook(BookDTO bookDTO, Picture picture) {
-        Book b = new Book();
-
-        b.setAuthor(bookDTO.getAuthor());
-        b.setPrice(bookDTO.getPrice());
-        b.setPublisher(bookDTO.getPublisher());
-        b.setQuantity(Integer.parseInt(bookDTO.getQuantity()));
-        b.setTitle(bookDTO.getTitle());
-        b.setType(bookDTO.getType());
-        b.setYear(bookDTO.getYear());
-        b.setPicture(picture);
-        
-        bookDAO.save(b);
+    public void add(Book book) {
+        bookDAO.save(book);
     }
 
     @Override
-    public void updateBook(BookDTO bookDTO, Picture picture) {
-        Book b = bookDAO.findOne(bookDTO.getId());
-
-        b.setAuthor(bookDTO.getAuthor());
-        b.setPrice(bookDTO.getPrice());
-        b.setPublisher(bookDTO.getPublisher());
-        b.setQuantity(Integer.parseInt(bookDTO.getQuantity()));
-        b.setTitle(bookDTO.getTitle());
-        b.setType(bookDTO.getType());
-        b.setYear(bookDTO.getYear());
-        b.setPicture(picture);
-
-        bookDAO.save(b);
+    public void update(Book book) {
+        bookDAO.save(book);
     }
     
     @Override
-    public void updateQuantity(Book book){}
+    public void updateQuantity(Book book){
+        bookDAO.save(book);
+    }
 
     @Override
-    public void deleteBook(Long id) {
+    public void delete(Long id) {
         bookDAO.delete(id);
     }
 
@@ -72,7 +50,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAll() {
-        return (List<Book>) bookDAO.findAll();
+        return  bookDAO.findAll();
     }
 
     @Override
@@ -86,7 +64,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findBooksForBooksBar() {
+    public List<Book> findForBooksBar() {
         return bookDAO.findRandomBook();
     }
 

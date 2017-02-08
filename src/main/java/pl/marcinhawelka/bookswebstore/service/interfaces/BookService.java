@@ -6,9 +6,7 @@
 package pl.marcinhawelka.bookswebstore.service.interfaces;
 
 import java.util.List;
-import pl.marcinhawelka.bookswebstore.dto.BookDTO;
 import pl.marcinhawelka.bookswebstore.entity.Book;
-import pl.marcinhawelka.bookswebstore.entity.Picture;
 import pl.marcinhawelka.bookswebstore.entity.Publisher;
 import pl.marcinhawelka.bookswebstore.entity.Type;
 /**
@@ -17,13 +15,13 @@ import pl.marcinhawelka.bookswebstore.entity.Type;
  */
 public interface BookService {
     
-    void addBook(BookDTO bookDTO, Picture picturea);
+    void add(Book book);
     
-    void updateBook(BookDTO bookDTO, Picture picture);
+    void update(Book book);
     
     void updateQuantity(Book book);
     
-    void deleteBook(Long id);
+    void delete(Long id);
     
     Book findOne(Long id);
     
@@ -33,6 +31,6 @@ public interface BookService {
     
     List<Book> findByType(Type type);
     
-    List<Book> findBooksForBooksBar();
+    List<Book> findForBooksBar();
     
 }

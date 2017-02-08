@@ -26,4 +26,7 @@ public interface BookDAO extends CrudRepository<Book, Long> {
 
     @Query("select b from Book b order by RANDOM() ")
     List<Book> findRandomBook();
+    
+    @Override
+    List<Book> findAll();
 }

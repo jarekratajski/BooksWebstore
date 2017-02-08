@@ -105,7 +105,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public List<Picture> findAll() {
-        return (List<Picture>) pictureDAO.findAll();
+        return pictureDAO.findAll();
     }
 
 }
