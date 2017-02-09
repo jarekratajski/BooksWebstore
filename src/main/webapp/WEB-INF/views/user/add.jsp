@@ -17,41 +17,41 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div>
                     <h1>Rejestracja</h1>
                 </div>
-                <form:form action="new" method="post" modelAttribute="user">
-                    <table>
+                <table class="user_add_table">
+                    <form:form action="new" method="post" modelAttribute="user">
                         <tr>
-                            <td><label for="username">Nazwa uzytkownika</label></td>
-                            <td><form:input path="username" id="username" placeholder="Nazwa uztkownika"/></td>
+                            <td class="user_add_table_td"><label for="username">Nazwa uzytkownika</label></td>
+                            <td class="user_add_table_td"><form:input class="user_add_table_input" path="username" id="username" placeholder="Nazwa uztkownika"/></td>
                         </tr>
                         <c:if test="${pageContext.request.method=='POST'}">
                             <tr>
                                 <td></td>
                                 <td><form:errors path="username" /></td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <td></td>
                                 <td>${errorUsername}</td>
                             </tr>
                         </c:if>
                         <tr>
-                            <td><label for="password">Haslo</label></td>
-                            <td><form:input path="password" id="password" placeholder="Haslo"/></td>
+                            <td class="user_add_table_td"><label for="password">Haslo</label></td>
+                            <td class="user_add_table_td"><form:input class="user_add_table_input" path="password" id="password" placeholder="Haslo"/></td>
                         </tr>
                         <c:if test="${pageContext.request.method=='POST'}">
                             <tr>
@@ -60,8 +60,8 @@
                             </tr>
                         </c:if>
                         <tr>
-                            <td><label for="passwordRepeat">Powtorz haslo</label></td>
-                            <td><form:input path="passwordRepeat" id="passwordRepeat" placeholder="Powtorz haslo"/></td>
+                            <td class="user_add_table_td"><label for="passwordRepeat">Powtorz haslo</label></td>
+                            <td class="user_add_table_td"><form:input class="user_add_table_input" path="passwordRepeat" id="passwordRepeat" placeholder="Powtorz haslo"/></td>
                         </tr>
                         <c:if test="${pageContext.request.method=='POST'}">
                             <tr>
@@ -74,8 +74,8 @@
                             </tr>
                         </c:if>
                         <tr>
-                            <td><label for="email">E-mail</label></td>
-                            <td><form:input path="email" id="email" placeholder="E-mail"/></td>
+                            <td class="user_add_table_td"><label for="email">E-mail</label></td>
+                            <td class="user_add_table_td"><form:input class="user_add_table_input" path="email" id="email" placeholder="E-mail"/></td>
                         </tr>
                         <c:if test="${pageContext.request.method=='POST'}">
                             <tr>
@@ -89,13 +89,12 @@
                         </c:if>
                         <tr>
                             <td></td>
-                            <td><input class="a_buttonSmall" type="submit" value="Zarejestruj"</td>
+                            <td><input class="a_button" type="submit" value="Zarejestruj"</td>
                         </tr>
-                    </table>
-
-                </form:form>
+                    </form:form>
+                </table>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

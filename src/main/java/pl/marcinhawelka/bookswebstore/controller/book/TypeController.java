@@ -33,11 +33,4 @@ public class TypeController {
         model.addAttribute("types", typeService.findAll());
         return "type/list";
     }
-
-    @GetMapping("{type}")
-    public String getTypeById(Model model, Type type) {
-        model.addAttribute("type", type);
-        model.addAttribute("books",bookService.findByType(type));
-        return "type/details";
-    }
 }

@@ -16,42 +16,38 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">       
-                <div class="select">
-                    <table class="books">
+            <div class="content">    
+                <div>
+                    <table class="type_list_table">
                         <c:forEach items="${types}" var="type">
-                            <tr>
-                                <td>
-                                    <ul>
-                                        <div id="type_left">
-                                            <li><a id="type_button" href="${pageContext.request.servletContext.contextPath}/book/type/${type.id}">${type.type}</a></li>
-                                        </div>
-                                        <div id="type_right">
-                                            <sec:authorize access="hasAnyRole('ROLE_DEALER','ROLE_ADMIN')">
-                                                <li><a href="${pageContext.request.servletContext.contextPath}/dealer/types/edit/${type.id}">Edytuj</a></li>
-                                                <li><a href="${pageContext.request.servletContext.contextPath}/dealer/types/delete/${type.id}">Skasuj</a></li>
-                                                </sec:authorize>
-                                        </div>
-                                    </ul>
+                            <tr style="height: 50px;">
+                                <td>                   
+                                    <a class="type_button"href="${pageContext.request.servletContext.contextPath}/book/type/${type.id}">${type.type}</a>    
                                 </td>
+                                <sec:authorize access="hasAnyRole('ROLE_DEALER','ROLE_ADMIN')"> 
+                                    <td>
+                                        <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/dealer/types/edit/${type.id}">Edytuj</a>
+                                        <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/dealer/types/delete/${type.id}">Skasuj</a>                               
+                                    </td>
+                                </sec:authorize>                               
                             </tr>
                         </c:forEach>
                     </table>
                 </div>    
             </div> 
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

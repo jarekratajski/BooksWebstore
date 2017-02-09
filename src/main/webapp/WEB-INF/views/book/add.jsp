@@ -15,22 +15,22 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div id="addBook">
-                    <div class="select">
-                        <table class="login_table">
+                    <div>
+                        <table class="book_add_table">
                             <form:form commandName="book"
                                        action="new?${_csrf.parameterName}=${_csrf.token}"
                                        method="post" modelAttribute="book"
@@ -38,94 +38,94 @@
 
                                 <h1>Dodawanie ksiazki</h1>
                                 <tr>
-                                    <td><label  for="type">Gatunek:</label></td>
-                                    <td>
-                                        <form:select path="type.id" items="${types}" itemLabel="type" itemValue="id" size="3" >
+                                    <td class="book_add_table_td" ><label  for="type">Gatunek:</label></td>
+                                    <td class="book_add_table_td" >
+                                        <form:select class="book_add_table_select" path="type.id" items="${types}" itemLabel="type" itemValue="id" size="3" >
                                         </form:select>
                                     </td>
                                 </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="type.id" /></td>
+                                        <td class="book_add_table_td" ></td>
+                                        <td class="book_add_table_td" ><form:errors path="type.id" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td><label for="publisher">Wydawnictwo:</label></td>
-                                    <td>
-                                        <form:select path="publisher.id" items="${publishers}" itemLabel="name" itemValue="id" size="3"></form:select>
+                                    <td class="book_add_table_td" ><label for="publisher">Wydawnictwo:</label></td>
+                                    <td class="book_add_table_td" >
+                                        <form:select class="book_add_table_select" path="publisher.id" items="${publishers}" itemLabel="name" itemValue="id" size="3"></form:select>
                                         </td>
                                     </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="publisher.id" /></td>
+                                        <td class="book_add_table_td" ></td>
+                                        <td class="book_add_table_td"><form:errors path="publisher.id" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td><label for="title">Tytul:</label></td>
-                                    <td><form:input path="title" id="title" placeholder="Tytul"/></td>
+                                    <td class="book_add_table_td"><label for="title">Tytul:</label></td>
+                                    <td class="book_add_table_td"><form:input class="book_add_table_input" path="title" id="title" placeholder="Tytul"/></td>
                                 </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="title" /></td>
+                                        <td class="book_add_table_td"></td>
+                                        <td class="book_add_table_td"><form:errors path="title" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td><label for="author">Autor:</label></td>
-                                    <td><form:input path="author" id="author" placeholder="Autor"/></td>
+                                    <td class="book_add_table_td"><label for="author">Autor:</label></td>
+                                    <td class="book_add_table_td"><form:input class="book_add_table_input" path="author" id="author" placeholder="Autor"/></td>
                                 </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="author" /></td>
+                                        <td class="book_add_table_td"></td>
+                                        <td class="book_add_table_td"><form:errors path="author" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td><label for="price">Cena:</label></td>
-                                    <td><form:input path="price" id="price" placeholder="Cena"/></td>
+                                    <td class="book_add_table_td"><label for="price">Cena:</label></td>
+                                    <td class="book_add_table_td"><form:input class="book_add_table_input" path="price" id="price" placeholder="Cena"/></td>
                                 </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="price" /></td>
+                                        <td class="book_add_table_td"></td>
+                                        <td class="book_add_table_td"><form:errors path="price" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td><label for="year">Rok wydania:</label></td>
-                                    <td><form:input path="year" id="year" placeholder="Rok wydania"/></td>
+                                    <td class="book_add_table_td"><label for="year">Rok wydania:</label></td>
+                                    <td class="book_add_table_td"><form:input class="book_add_table_input" path="year" id="year" placeholder="Rok wydania"/></td>
                                 </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="year" /></td>
+                                        <td class="book_add_table_td"></td>
+                                        <td class="book_add_table_td"><form:errors path="year" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td><label for="quantity">Ilosc:</label></td>
-                                    <td><form:input path="quantity" id="quantity" placeholder="Ilosc"/></td>
+                                    <td class="book_add_table_td"><label for="quantity">Ilosc:</label></td>
+                                    <td class="book_add_table_td"><form:input class="book_add_table_input" path="quantity" id="quantity" placeholder="Ilosc"/></td>
                                 </tr>
                                 <c:if test="${pageContext.request.method=='POST'}">
                                     <tr>
-                                        <td></td>
-                                        <td><form:errors path="quantity" /></td>
+                                        <td class="book_add_table_td"></td>
+                                        <td class="book_add_table_td"><form:errors path="quantity" /></td>
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td>
+                                    <td class="book_add_table_td">
                                         <input type="file" name="uploadFile" />
                                     </td>
                                 </tr>
 
                                 <form:input type="hidden" path="id"/>
-                                <td><input type="submit" value="Dodaj"/></td>
+                                <td><input class="a_button"type="submit" value="Dodaj"/></td>
                                 </form:form>
                         </table>
                     </div>
                 </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

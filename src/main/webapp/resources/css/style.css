@@ -9,24 +9,26 @@ body {
     font-size: 15px;
     background-color: #f2f2f2;
 }
-
-#wrapper {
+ul{
+    list-style: none;
+}
+.container {
     margin: 0 auto;
     width: 922px;
 }
 
 /* login bar */
-div.loginbar {
+.loginbar {
     text-align: right;
-    height: 2em;
+    min-height: 50px;
     vertical-align: middle;
-    margin-bottom: 20px;
 
 }
-#login_section{
+.login_section{
     width: 922px;
-}
-#a_button td a, .a_buttonSmall{
+    height: 50px;
+}    
+.a_buttonSmall{
     background-color: #3E3E3E;
     color: white;
     padding: 0px 30px;
@@ -50,21 +52,20 @@ div.loginbar {
     text-decoration: none;
     text-align: center;
     vertical-align: middle; 
+    margin: 5px;
 }
-#usersbutton{
+.userbuttons{
     float: right;
+    min-width: 350px;
 }
-#user_hello{
+.user_hello{
     float: left;
 }
-#user_list{
-    display: inline;
-}
-#user_logout{
+.userbutton{
     display: inline;
 }
 /* header */
-#header {
+.header {
     color: #333;
     width: 922px;
     padding: 0px;
@@ -75,19 +76,19 @@ div.loginbar {
 
 }
 
-div.headertext {
+.headertext {
     text-align: left;
     margin: 10px;
 
 }
 
 /* horizontal menu  */
-div.menu {
+.menu {
     background-color: #333;
     white-space: nowrap;
 }
 
-div.menu a {
+.menu_a {
     display: inline-block;
     color: white;
     padding: 14px;
@@ -95,74 +96,46 @@ div.menu a {
     text-decoration: none;
 }
 
-div.menu a:hover {
+.menu_a:hover {
     background-color: #777;
-}
-
-#basketbutton{
-    float:right;
 }
 
 /* leftcolumn*/
 /* vertical menu */
 
-#leftcolumn {
-    color: #333;
-    margin: 0px 0px 0px 0px;
+.leftmenu {
+    color: white;
+    margin: 0px;
     padding: 0px;
-    height: 350px;
+    height: 500px;
     width: 220px;
     float: left;
 }
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
 
-img {
-    border: none;
-}
-
-#allleftmenubuttons {
-    width: 220px;
-    margin: 0px;
-}
-
-#allleftmenubuttons a {
+.leftmenu_a{
     color: white;
     height: 24px;
     text-decoration: none;
 }
 
-#allleftmenubuttons li a:link, #menu li a:visited {
+.leftmenu_a:link{
     display: block;
     padding: 8px 0 0 30px;
-}
-
-#allleftmenubuttons li a:hover {
-    color: #FFF;
-}
-
-/* left menu  buttons */
-
-div.leftmenu li a:link, #menu li a:visited {
     background: url(menu.gif);
 }
-
-div.leftmenu li a:hover {
+.leftmenu_a:hover{
+    color: #FFF;
     background: url(menu.gif) 0 -32px;
 }
-
-/* right column */
-/* main content */
-.basket{
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px;
+.leftmenu_ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-#rightcolumn {
-    float: right;
+
+/* content */
+.content {
+    float: left;
     color: #333;
     margin: 0px 0px 0px 0px;
     padding: 10px;
@@ -170,58 +143,16 @@ div.leftmenu li a:hover {
     width: 670px;
     display: inline;
 }
-/* form view */
-.login_table {
-    margin: auto;
-    width: 690px;
-    margin-top: 4%;
-}
+/* books page ,publisher page, type page, login page 
+ user page*/
 
-.select select {
-    width: 200px;
-    font-size: 16px;
-    border: 1px solid silver;
-    text-align: center;
-}
-
-.login_table tr td {
-    padding: 5px;
-    color: #333;
-}
-
-.login_table tr td label{
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.login_table tr td input[type="text"], .login_table tr td input[type="password"],
-.login_table tr td input[type="email"] {
-    padding: 12px 10px;
-    font-size: 16px;
-    border: 1px solid silver;
-    width: 400px;
-    outline: 0;
-}
-
-.login_table tr td input[type="submit"] {
-    background-color: #3E3E3E;
-    color: #fff;
-    padding: 10px 30px;
-    border: 0;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-/* books list */
-
-.books tr td ul{
+.table_ul{
     font-size: 16px;
     font-weight: bold;
     padding: 10px;
 }
 
-.books tr td ul li a{
+.table_a{
     background-color: #3E3E3E;
     color: #fff;
     padding: 0px 10px;
@@ -233,15 +164,57 @@ div.leftmenu li a:hover {
     vertical-align: middle; 
     border: 10px;
 }
-.books tr td ul #type_left {
+
+.book_details_table, .publihser_details_table, .type_list_table,
+.publihser_list_table, .user_add_table_td, .change_password_table,
+.user_table_details, .user_edit_table{
+    font-weight: bold;
+    font-size: 20px;
+    margin: auto;
+    width: 690px;
+    margin-top: 4%;
+}
+
+.book_add_table, .publisher_add_table, .type_add_table,
+.login_table, .user_add_table{
+    margin: auto;
+    width: 690px;
+    margin-top: 4%;
+}
+
+.book_add_table_td, .publisher_add_table_td, .type_add_table_td,
+.login_table_td, user_add_table_td, .change_password_table_td{
+    padding: 5px;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.book_add_table_input, .publisher_add_table_input, .type_add_table_input,
+.login_table_input, .user_add_table_input, .change_password_table_input,
+.user_edit_table_input{
+    padding: 12px 10px;
+    font-size: 16px;
+    border: 1px solid silver;
+    width: 400px;
+    outline: 0;
+}
+
+.book_add_table_select, .user_edit_table_select{
+    width: 200px;
+    font-size: 16px;
+    border: 1px solid silver;
+    text-align: center;
+}
+.type_left {
     float: left;
     margin: 25px;
 }
-.books tr td ul #type_right {
+.type_right {
     float: right;
 }
 
-#type_button{
+.type_button{
 
     background-color: #3E3E3E;
     color: #fff;
@@ -256,7 +229,7 @@ div.leftmenu li a:hover {
 }
 
 /* footer */
-#footer {
+.footer {
     width: 900px;
     clear: both;
     color: #333;
@@ -266,3 +239,10 @@ div.leftmenu li a:hover {
     padding: 10px;
 }
 
+.footer_content{
+    width: 880px;
+    border: 1px solid #ccc;
+    margin: auto;
+    font-weight: bold;
+    text-align: right;
+}

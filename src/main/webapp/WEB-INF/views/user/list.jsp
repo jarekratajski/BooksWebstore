@@ -16,19 +16,19 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div id="addBook">
                     <div class="select">
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -49,7 +49,7 @@
                                         <td style="width: 480px;">
                                             <ul>
                                                 <li><a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/admin/edit/${user.username}">Edytuj</a>
-                                                <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/user/${user.username}">Skasuj</a>
+                                                <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/user/delete/${user.username}">Skasuj</a>
                                                  <a  class="a_buttonSmall" href="${pageContext.request.contextPath}/user/change/password/${user.username}">Zmien haslo</a></li>
                                             </ul>
                                         </td>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

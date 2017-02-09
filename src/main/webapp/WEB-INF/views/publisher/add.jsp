@@ -17,47 +17,45 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
-                <div id="addBook">
-                    <div class="select">
-                        <table class="login_table">
+            <div class="content">
+                    <div>
+                        <table class="publisher_add_table">
                             <form:form action="new?${_csrf.parameterName}=${_csrf.token}"
                                        method="POST" modelAttribute="publisher"
                                        enctype="multipart/form-data">
 
                                 <h1>Dodawanie wydawnictwa</h1>
                                 <tr>
-                                    <td><label for="name">Nazwa wydawnictwa:</label></td>
-                                    <td><form:input path="name" id="name" placeholder="Nazwa wydawnictwa"/></td>
+                                    <td class="publisher_add_table_td"><label for="name">Nazwa wydawnictwa:</label></td>
+                                    <td class="publisher_add_table_td"><form:input class="publisher_add_table_input" path="name" id="name" placeholder="Nazwa wydawnictwa"/></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="creationYear">Rok powstaniaia</label></td>
-                                    <td><form:input path="creationYear" id="creationYear" placeholder="Rok powstaniaia"/></td>
+                                    <td class="publisher_add_table_td"><label for="creationYear">Rok powstaniaia</label></td>
+                                    <td class="publisher_add_table_td"><form:input class="publisher_add_table_input" path="creationYear" id="creationYear" placeholder="Rok powstaniaia"/></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <input type="file" name="uploadFile" />
                                     </td>
                                 </tr>
-                                <td><input type="submit" value="Dodaj"/></td>
+                                <td><input class="a_button" type="submit" value="Dodaj"/></td>
                                 </form:form>
                         </table>
                     </div>
-                </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

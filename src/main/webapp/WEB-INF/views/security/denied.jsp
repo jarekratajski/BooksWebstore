@@ -18,27 +18,24 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
-            <div id="wrapper">
-                <div class="loginbar">
-                    <jsp:include page="../loginbar.jsp" />
-                </div>
-
-                <div id="header">
-                    <jsp:include page="../header.jsp" />
-                </div>
-
-                <div id="leftcolumn">
-                    <jsp:include page="../leftmenu.jsp" />                
-                </div>
-
-                <div id="rightcolumn">
-
-                    ` <h1>${message}</h1>
-                </div>
-                <div id="footer">
-                    <jsp:include page="../footer.jsp"/>
-                </div>
+        <div class="container">
+            <div class="loginbar">
+                <jsp:include page="../loginbar.jsp" />
             </div>
+
+            <div class="header">
+                <jsp:include page="../header.jsp" />
+            </div>
+
+            <div class="leftmenu">
+                <jsp:include page="../leftmenu.jsp" />                
+            </div>
+            <div class="content">
+                ` <h1>${message}</h1>
+            </div>
+            <div class="footer">
+                <jsp:include page="../footer.jsp"/>
+            </div>
+        </div>
     </body>
 </html>

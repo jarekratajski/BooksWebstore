@@ -22,12 +22,12 @@
 
 	<div class="menu">
 
-		<a href="${pageContext.request.contextPath}">Strona glowna</a> 
-		<a href="${pageContext.request.contextPath}/underconstruction">Kontakt</a>
+		<a class="menu_a" href="${pageContext.request.contextPath}">Strona glowna</a> 
+		<a class="menu_a" href="${pageContext.request.contextPath}/underconstruction">Kontakt</a>
 		<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER','ROLE_DEALER')">
-		<a href="${pageContext.request.contextPath}/order/buy/${pageContext.request.userPrincipal.name}/list" >Moje zamowiania</a>
+		<a class="menu_a" href="${pageContext.request.contextPath}/order/buy/${pageContext.request.userPrincipal.name}/list" >Moje zamowiania</a>
 		</sec:authorize>
-                <a href="${pageContext.request.contextPath}/order/buy/cart" id="basketbutton" >Moj koszyk</a>
+                <a class="menu_a" style="float: right;" href="${pageContext.request.contextPath}/order/buy/cart" >Moj koszyk</a>
 	</div>
 
 </section>

@@ -12,7 +12,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,10 +102,9 @@ public class BuyOrderController {
         return "order/buy/confirm";
     }
 
-    @PostMapping("{username}/confirm")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #username")
-    public String saveBuyOrder(Model model, @PathVariable String username) {
-        User user = userService.findByUsername(username);
+    @PostMapping("{user}/confirm")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEALER') || principal.username == #user.username")
+    public String saveBuyOrder(Model model, User user) {
         BuyModel buyModel = sessionOrderService.getBuyModelInSession();
         buyOrderService.saveOrder(user, buyModel);
         sessionOrderService.removeBuyModelInSession();

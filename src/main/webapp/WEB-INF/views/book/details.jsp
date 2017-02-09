@@ -14,22 +14,22 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div id="addBook">
-                    <div class="select">
-                        <table class="login_table">
+                    <div>
+                        <table class="book_details_table">
                             <tr>
                                 <td>Tytul:</td>
                                 <td>${book.title}</td>
@@ -56,8 +56,8 @@
                             </tr>
                             <sec:authorize access="hasAnyRole('ROLE_DEALER','ROLE_ADMIN')">
                                 <tr>
-                                    <td> <a href="${pageContext.request.servletContext.contextPath}/dealer/books/edit/${book.id}">Edytuj</a></td>
-                                    <td> <a href="${pageContext.request.servletContext.contextPath}/dealer/books/delete/${book.id}">Skasuj</a></td>
+                                    <td> <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/dealer/books/edit/${book.id}">Edytuj</a></td>
+                                    <td> <a class="a_buttonSmall" href="${pageContext.request.servletContext.contextPath}/dealer/books/delete/${book.id}">Skasuj</a></td>
                                 </tr>
                             </sec:authorize>
                         </table>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

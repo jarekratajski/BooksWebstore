@@ -49,13 +49,13 @@ public class UserController {
     }
 
     @GetMapping("new")
-    public String getAddUserPage(Model model) {
+    public String getNewUserPage(Model model) {
         model.addAttribute("user", new UserNewDTO());
         return "user/add";
     }
 
     @PostMapping("new")
-    public String addNewUser(Model model, @Valid @ModelAttribute("user") UserNewDTO userNewDTO, BindingResult result) {
+    public String handleNewUser(Model model, @Valid @ModelAttribute("user") UserNewDTO userNewDTO, BindingResult result) {
         if (result.hasErrors()) {
             return "user/add";
         }

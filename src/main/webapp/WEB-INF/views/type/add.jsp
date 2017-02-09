@@ -17,39 +17,37 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
-                <div id="addBook">
-                    <div class="select">
-                        <table class="login_table">
-                            <form:form action="new"
-                                       method="POST" modelAttribute="type"
-                                       >
-
-                                <h1>Dodawanie gatunkow:</h1>
-                                <tr>
-                                    <td><label for="name">Gatunek:</label></td>
-                                    <td><form:input path="type" id="name" placeholder="Gatunek"/></td>
-                                </tr>
-
-                                <td><input type="submit" value="Dodaj"/></td>
-                                </form:form>
-                        </table>
-                    </div>
+            <div class="content">
+                <div>
+                    <table class="type_add_table">
+                        <form:form action="new"
+                                   method="POST" modelAttribute="type"
+                                   >
+                            <h1>Dodawanie gatunkow:</h1>
+                            <tr>
+                                <td class="type_add_table_td"><label for="name">Gatunek:</label></td>
+                                <td class="type_add_table_td"><form:input class="type_add_table_input" path="type" id="name" placeholder="Gatunek"/></td>
+                            </tr>
+                            <tr>
+                                <td><input class="a_button" type="submit" value="Dodaj"/></td>
+                            </tr>
+                        </form:form>
+                    </table>
                 </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

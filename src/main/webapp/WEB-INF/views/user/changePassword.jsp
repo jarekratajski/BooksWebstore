@@ -17,41 +17,41 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div>
                     <h1>Zmien haslo</h1>
                 </div>
                 <form:form action="${pageContext.request.userPrincipal.name}" method="post" modelAttribute="password">
-                    <table class="login_table">    
+                    <table class="change_password_table">    
                         <tr>
-                            <td><label for="password">Haslo</label></td>
-                            <td><form:input type="password"  path="password" id="password" placeholder="Haslo"/></td>
+                            <td class="change_password_table_td"><label for="password">Haslo</label></td>
+                            <td class="change_password_table_td"><form:input class="change_password_table_input" type="password"  path="password" id="password" placeholder="Haslo"/></td>
                         </tr>
                         <tr>
-                            <td><label for="passwordRepeat">Powtorz haslo</label></td>
-                            <td><form:input type="password"  path="passwordRepeat" id="passwordRepeat"  placeholder="Powtorz haslo"/></td>
+                            <td class="change_password_table_td"><label for="passwordRepeat">Powtorz haslo</label></td>
+                            <td class="change_password_table_td"><form:input class="change_password_table_input" type="password"  path="passwordRepeat" id="passwordRepeat"  placeholder="Powtorz haslo"/></td>
                         </tr>       
                         <tr>
                             <td></td>
-                            <td><input type="submit" value="Zmien haslo"</td>
+                            <td><input class="a_button" type="submit" value="Zmien haslo"</td>
                         </tr>
                     </table>
                 
                 </form:form>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

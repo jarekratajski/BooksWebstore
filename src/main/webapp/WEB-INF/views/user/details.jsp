@@ -17,22 +17,22 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div>
                     <h1>Szczegoly uzytkownika</h1>
-                    <table>
+                    <table class="user_table_details">
                         <tr>
                             <td>Nazwa uzytkownika</td>
                             <td>${user.username}</td>
@@ -47,13 +47,13 @@
                         </tr>
                         <tr id="a_button">
                             <td>
-                                <a  href="${pageContext.request.contextPath}/user/change/password/${pageContext.request.userPrincipal.name}">Zmien haslo</a>
+                                <a class="a_buttonSmall" href="${pageContext.request.contextPath}/user/change/password/${pageContext.request.userPrincipal.name}">Zmien haslo</a>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

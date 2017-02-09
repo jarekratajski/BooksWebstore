@@ -17,35 +17,35 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+       <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
+            <div class="content">
                 <div>
                     <h1>Edycja danych</h1>
                 </div>
                 <form:form action="${user.username}" method="post" modelAttribute="user">
-                    <table class="basket">
+                    <table class="user_edit_table">
                         <tr>
                             <td><label for="username">Nazwa uzytkownika</label></td>
-                            <td><form:input path="username" id="username" placeholder="Nazwa uztkownika"/></td>
+                            <td><form:input class="user_edit_table_input" path="username" id="username" placeholder="Nazwa uztkownika"/></td>
                         </tr>
                         <tr>
                             <td><label for="email">E-mail</label></td>
-                            <td><form:input path="email" id="email" placeholder="E-mail"/></td>
+                            <td><form:input class="user_edit_table_input" path="email" id="email" placeholder="E-mail"/></td>
                         </tr>
                         <tr>
                             <td><label for="role">Rola:</label></td>
-                            <td><form:select path="role" id="role">
+                            <td><form:select class="user_edit_table_select" path="role" id="role" size="3">
                                     <form:option value="ROLE_USER" />
                                     <form:option value="ROLE_DEALER"/>
                                     <form:option value="ROLE_ADMIN"/>
@@ -53,13 +53,13 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input class="a_buttonSmall" type="submit" value="Edytuj"</td>
+                            <td><input class="a_button" type="submit" value="Edytuj"</td>
                         </tr>
                     </table>
                         
                 </form:form>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>

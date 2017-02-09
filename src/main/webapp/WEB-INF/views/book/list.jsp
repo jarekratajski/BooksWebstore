@@ -15,37 +15,37 @@
         <title>Ksiegarnia</title>
     </head>
     <body>
-        <div id="wrapper">
+        <div class="container">
             <div class="loginbar">
                 <jsp:include page="../loginbar.jsp" />
             </div>
 
-            <div id="header">
+            <div class="header">
                 <jsp:include page="../header.jsp" />
             </div>
 
-            <div id="leftcolumn">
+            <div class="leftmenu">
                 <jsp:include page="../leftmenu.jsp" />                
             </div>
-            <div id="rightcolumn">
-                <div class="select">
+            <div class="content">
+                <div>
                     <table class="books">
                         <c:forEach items="${books}" var="book">
                             <tr>
                                 <td><a href="${pageContext.request.servletContext.contextPath}/book/${book.id}">
                                         <img src="${pageContext.request.servletContext.contextPath}/picture/${book.picture.id}"
-                                             height="150" width="220" alt="Brak zdjecia ksiazki" />
+                                             height="150" width="220" alt="Zdjecie ksiazki" />
                                     </a>
                                 </td>
                                 <td>
-                                    <ul>
+                                    <ul class="table_ul">
                                         <li>${book.title}</li>
                                         <li>${book.author}</li>
                                         <li>${book.price}zl</li>
-                                        <li><a href="${pageContext.request.servletContext.contextPath}/order/buy/add?id=${book.id}">Dodaj do koszyka</a>
+                                        <li><a class="table_a" href="${pageContext.request.servletContext.contextPath}/order/buy/add?id=${book.id}">Dodaj do koszyka</a>
                                             <sec:authorize access="hasAnyRole('ROLE_DEALER','ROLE_ADMIN')">
-                                                <a href="${pageContext.request.servletContext.contextPath}/dealer/books/edit/${book.id}">Edytuj</a>
-                                                <a href="${pageContext.request.servletContext.contextPath}/dealer/books/delete/${book.id}">Skasuj</a>
+                                                <a class="table_a" href="${pageContext.request.servletContext.contextPath}/dealer/books/edit/${book.id}">Edytuj</a>
+                                                <a class="table_a" href="${pageContext.request.servletContext.contextPath}/dealer/books/delete/${book.id}">Skasuj</a>
                                             </sec:authorize>
                                         </li>
                                     </ul>
@@ -55,7 +55,7 @@
                     </table>
                 </div>
             </div>
-            <div id="footer">
+            <div class="footer">
                 <jsp:include page="../footer.jsp"/>
             </div>
         </div>
